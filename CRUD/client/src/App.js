@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
+import Axios from "axios";
+import Card from "./components/cards/card";
 
 function App() {
   const [values, setValues] = useState();
@@ -10,8 +12,20 @@ function App() {
     }));
   };
   const handleClickButton = (e) => {
-    console.log(values);
+    Axios.post("http://localhost:3001/register", {
+      name: values.name,
+      price: values.price,
+      category: values.category,
+    }).then((response) => {
+      console.log(response);
+    });
   };
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/getCard").then((response) => {
+      console.log(response);
+    });
+  }, []);
 
   return (
     <div className="app-container">
@@ -45,6 +59,7 @@ function App() {
           Cadastrar
         </button>
       </div>
+      <Card />
     </div>
   );
 }
