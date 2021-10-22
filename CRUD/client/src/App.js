@@ -5,12 +5,17 @@ import Card from "./components/cards/card";
 
 function App() {
   const [values, setValues] = useState();
+  const [listGames, setListGames] = useState();
+
+  console.log(listGames);
+
   const handleChangeValues = (e) => {
     setValues((prevValue) => ({
       ...prevValue,
       [e.target.name]: e.target.value,
     }));
   };
+
   const handleClickButton = (e) => {
     Axios.post("http://localhost:3001/register", {
       name: values.name,
@@ -22,8 +27,8 @@ function App() {
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/getCard").then((response) => {
-      console.log(response);
+    Axios.get("http://localhost:3001/getCards").then((response) => {
+      setListGames(response.data);
     });
   }, []);
 
@@ -59,7 +64,10 @@ function App() {
           Cadastrar
         </button>
       </div>
-      <Card />
+      {typeof listGames !== "undefined" &&
+        listGames.map((value) => {
+          return <Card />;
+        })}
     </div>
   );
 }
