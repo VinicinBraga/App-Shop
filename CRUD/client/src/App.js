@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="register-container">
-        <h1 className="register-title">Game Store</h1>
+        <h1 className="register-title">Game Data</h1>
         <input
           className="register--input"
           type="text"

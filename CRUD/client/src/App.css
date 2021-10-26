@@ -4,7 +4,7 @@
   flex-direction: column;
 }
 .register-container {
-  padding: 10px 20px;
+  padding: 1px 20px;
   border-radius: 10px;
   box-shadow: 4px 4px 7px 1px rgba(0, 0, 0, 0.51);
   border: 1px solid rgb(230, 230, 230);
@@ -15,16 +15,34 @@
   text-align: center;
   margin-bottom: 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  background: #ffffff;
+  text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5,
+    -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5,
+    -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
 }
 .register--input {
+  border: 2px solid #4075b571;
   display: block;
   padding: 10px auto;
   margin-top: 10px;
-  outline-color: lawngreen;
+  outline-color: #4074b5;
+  color: #4074b5;
+}
+.register--input::placeholder {
+  color: #4075b567;
 }
 
 .register--button {
+  border: 2px solid #4074b5;
+  color: #4074b5;
   padding: 2px 5px;
   margin-top: 30px;
   margin-bottom: 20px;
+  cursor: pointer;
+}
+.register--button:hover {
+  background-color: #4074b5;
+  border-color: #4075b567;
+  color: #ffffff;
 }

@@ -1,4 +1,5 @@
 .card-container {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 210px;
   border-radius: 10px;
   padding: 20px;
@@ -6,14 +7,21 @@
   border: 1px solid rgb(230, 230, 230);
   margin-top: 20px;
   cursor: pointer;
+  color: #4074b5;
 }
 
 .card-title {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5,
+    -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5,
+    -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
 }
-.card-price {
+
+.card-category {
   margin-top: 20px;
 }
 .card-container:hover {
-  background-color: lawngreen;
+  background-color: #4075b571;
+  color: #4074b5;
 }
