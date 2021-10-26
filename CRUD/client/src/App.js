@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="register-container">
-        <h1 className="register-title">SHOP</h1>
+        <h1 className="register-title">Game Store</h1>
         <input
           className="register--input"
           type="text"
@@ -66,7 +66,17 @@ function App() {
       </div>
       {typeof listGames !== "undefined" &&
         listGames.map((value) => {
-          return <Card />;
+          return (
+            <Card
+              key={value.id}
+              listCard={listGames}
+              setListCard={setListGames}
+              id={value.id}
+              name={value.name}
+              price={value.price}
+              category={value.category}
+            ></Card>
+          );
         })}
     </div>
   );
