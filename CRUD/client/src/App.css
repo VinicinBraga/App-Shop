@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: #4074b5;
 }
 .register-container {
   padding: 1px 20px;
@@ -9,17 +10,18 @@
   box-shadow: 4px 4px 7px 1px rgba(0, 0, 0, 0.51);
   border: 1px solid rgb(230, 230, 230);
   margin-top: 20px;
+  background-color: #ffffff;
 }
 
 .register-title {
   text-align: center;
   margin-bottom: 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
+  color: #4074b5;
   background: #ffffff;
-  text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5,
-    -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5,
-    -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
+  text-shadow: 2px 2px 0 #b3cbe9, 2px -2px 0 #b3cbe9, -2px 2px 0 #b3cbe9,
+    -2px -2px 0 #b3cbe9, 2px 0px 0 #b3cbe9, 0px 2px 0 #b3cbe9,
+    -2px 0px 0 #b3cbe9, 0px -2px 0 #b3cbe9;
 }
 .register--input {
   border: 2px solid #4075b571;
@@ -34,7 +36,11 @@
 }
 
 .register--button {
+  display: block;
+  margin: 0 auto;
   border: 2px solid #4074b5;
+  background-color: #b3cbe9;
+  font-weight: bolder;
   color: #4074b5;
   padding: 2px 5px;
   margin-top: 30px;
@@ -44,5 +50,5 @@
 .register--button:hover {
   background-color: #4074b5;
   border-color: #4075b567;
-  color: #ffffff;
+  color: #b3cbe9;
 }

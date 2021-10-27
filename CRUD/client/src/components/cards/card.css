@@ -8,20 +8,17 @@
   margin-top: 20px;
   cursor: pointer;
   color: #4074b5;
+  background-color: #ffffff;
+}
+
+.card-container:hover {
+  background-color: #b3cbe9;
+  color: #4074b5;
 }
 
 .card-title {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
-  text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5,
-    -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5,
-    -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
-}
-
-.card-category {
-  margin-top: 20px;
-}
-.card-container:hover {
-  background-color: #4075b571;
   color: #4074b5;
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 0cm;
 }
