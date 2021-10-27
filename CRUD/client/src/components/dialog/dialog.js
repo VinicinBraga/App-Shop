@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 export default function FormDialog(props) {
@@ -17,39 +16,49 @@ export default function FormDialog(props) {
   };
 
   return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form Dialog
-      </Button>
-      <Dialog
-        open={props.open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subiscribe to this website, please enter yout email address her.
-            We will send updates occasionaly.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Dialog
+      open={props.open}
+      onClose={handleClose}
+      aria-labelledby="form-dialog-title"
+    >
+      <DialogTitle id="form-dialog-title">Editar</DialogTitle>
+      <DialogContent>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="name"
+          label="Game Name"
+          type="text"
+          fullWidth
+        />
+        <TextField
+          autoFocus
+          margin="dense"
+          id="Price"
+          label="Price"
+          type="text"
+          fullWidth
+        />
+        <TextField
+          autoFocus
+          margin="dense"
+          id="Category"
+          label="Category"
+          type="text"
+          fullWidth
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="primary">
+          Cancel
+        </Button>
+        <Button onClick={handleClose} color="primary">
+          Salvar
+        </Button>
+        <Button onClick={handleClose} color="primary">
+          Excluir
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
