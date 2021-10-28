@@ -3,21 +3,12 @@ import "./card.css";
 import FormDialog from "../dialog/dialogForm";
 
 export default function Card(props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   return (
     <>
-      <FormDialog
-        open={open}
-        setOpen={setOpen}
-        title={props.name}
-        category={props.category}
-        cost={props.cost}
-        listGames={props.listGames}
-        setListGames={props.setListGames}
-        id={props.id}
-      />
-      <div className="card-container" onClick={() => setOpen(true)}>
+      <FormDialog open={open} setOpen={setOpen} />
+      <div className="card-container">
         <p className="card-title">Game Card</p>
         <h2 className="game-title">{props.name}</h2>
         <p className="card-category">
@@ -27,7 +18,6 @@ export default function Card(props) {
           <b>Price: </b>
           {props.price} $
         </p>
-        <p className="card-id">{props.id}</p>
       </div>
     </>
   );

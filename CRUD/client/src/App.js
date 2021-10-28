@@ -1,36 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Axios from "axios";
 import Card from "./components/cards/cards";
 
-export default function App() {
+function App() {
   const [values, setValues] = useState();
-  const [listGames, setListGames] = useState([]);
+  const [listGames, setListGames] = useState();
 
   console.log(listGames);
-  const handleRegisterGame = () => {
+
+  const handleChangeValues = (e) => {
+    setValues((prevValue) => ({
+      ...prevValue,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleClickButton = (e) => {
     Axios.post("http://localhost:3001/register", {
-      id: values.idgames,
       name: values.name,
       price: values.price,
       category: values.category,
-    }).then(() => {
-      Axios.post("http://localhost:3001/search", {
-        id: values.idgames,
-        name: values.name,
-        price: values.price,
-        category: values.category,
-      }).then((response) => {
-        setListGames([
-          ...listGames,
-          {
-            id: response.idgames,
-            name: values.name,
-            price: values.price,
-            category: values.category,
-          },
-        ]);
-      });
+    }).then((response) => {
+      console.log(response);
     });
   };
 
@@ -40,56 +32,54 @@ export default function App() {
     });
   }, []);
 
-  const handleaddValues = (value) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      [value.target.name]: value.target.value,
-    }));
-  };
-
   return (
     <div className="app-container">
       <div className="register-container">
         <h1 className="register-title">Game Data</h1>
-
         <input
+          className="register--input"
           type="text"
           name="name"
-          placeholder="Nome"
-          className="register--input"
-          onChange={handleaddValues}
+          placeholder="Name"
+          onChange={handleChangeValues}
         />
         <input
+          className="register--input"
           type="text"
-          placeholder="Preço"
           name="price"
-          className="register--input"
-          onChange={handleaddValues}
+          placeholder="Price"
+          onChange={handleChangeValues}
         />
         <input
-          type="text"
-          placeholder="Categoria"
-          name="category"
           className="register--input"
-          onChange={handleaddValues}
+          type="text"
+          name="category"
+          placeholder="Category"
+          onChange={handleChangeValues}
         />
-
-        <button onClick={handleRegisterGame} className="register--button">
+        <button
+          className="register--button"
+          onClick={() => handleClickButton()}
+        >
           Cadastrar
         </button>
       </div>
-      {console.log(listGames)}
-      {listGames.map((value) => (
-        <Card
-          listGames={listGames}
-          setListGames={setListGames}
-          key={value.idgames}
-          id={value.idgames}
-          name={value.name}
-          price={value.price}
-          category={value.category}
-        />
-      ))}
+      {typeof listGames !== "undefined" &&
+        listGames.map((value) => {
+          return (
+            <Card
+              key={value.id}
+              listCard={listGames}
+              setListCard={setListGames}
+              id={value.id}
+              name={value.name}
+              price={value.price}
+              category={value.category}
+            ></Card>
+          );
+        })}
     </div>
   );
 }
+
+export default App;
