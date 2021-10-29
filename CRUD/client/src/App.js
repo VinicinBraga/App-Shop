@@ -7,28 +7,34 @@ function App() {
   const [values, setValues] = useState();
   const [listGames, setListGames] = useState();
 
-  const handleChangeValues = (e) => {
-    setValues((prevValue) => ({
-      ...prevValue,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
   const handleRegisterButton = () => {
-    Axios.post("http://localhost:3001/register", {
-      name: values.name,
-      price: values.price,
-      category: values.category,
-    }).then((response) => {
-      setListGames([
-        ...listGames,
-        {
+    console.log(values);
+    if (values === undefined) {
+      alert("The game store fields must be filled");
+    } else {
+      Axios.post("http://localhost:3001/register", {
+        name: values.name,
+        price: values.price,
+        category: values.category,
+      }).then(() => {
+        Axios.post("http://localhost:3001/search", {
           name: values.name,
-          price: values.price,
+          price: values.cost,
           category: values.category,
-        },
-      ]);
-    });
+        }).then(() => {
+          setListGames([
+            ...listGames,
+            {
+              name: values.name,
+              price: values.price,
+              category: values.category,
+            },
+          ]);
+        });
+      });
+    }
+
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -37,10 +43,17 @@ function App() {
     });
   }, []);
 
+  const handleChangeValues = (e) => {
+    setValues((prevValue) => ({
+      ...prevValue,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   return (
     <div className="app-container">
       <div className="register-container">
-        <h1 className="register-title">GAME DATA</h1>
+        <h1 className="register-title">GAME STORE</h1>
         <input
           className="register--input"
           type="text"
@@ -62,6 +75,7 @@ function App() {
           placeholder="Category"
           onChange={handleChangeValues}
         />
+
         <button
           className="register--button"
           onClick={() => handleRegisterButton()}
@@ -69,7 +83,6 @@ function App() {
           Cadastrar
         </button>
       </div>
-      {console.log(listGames)}
       {typeof listGames !== "undefined" &&
         listGames.map((value) => {
           return (

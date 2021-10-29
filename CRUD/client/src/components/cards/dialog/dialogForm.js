@@ -15,32 +15,50 @@ export default function FormDialog(props) {
     category: props.category,
   });
 
-  const handleEditValues = () => {
-    Axios.put("http://localhost:3001/edit", {
-      id: editValues.id,
-      name: editValues.name,
-      price: editValues.price,
-      category: editValues.category,
-    }).then((response) => {
-      console.log(response);
-    });
-    handleClose();
-  };
-
-  const handleDelete = () => {
-    Axios.delete(`http://localhost:3001/delete/${editValues.id}`);
-    handleClose();
+  const handleChangeValues = (values) => {
+    setEditValues((prevValues) => ({
+      ...prevValues,
+      [values.target.id]: values.target.value,
+    }));
   };
 
   const handleClose = () => {
     props.setOpen(false);
   };
 
-  const handleChangeValues = (v) => {
-    setEditValues((prevValues) => ({
-      ...prevValues,
-      [v.target.id]: v.target.value,
-    }));
+  const handleEditValues = () => {
+    Axios.put("http://localhost:3001/edit", {
+      id: editValues.id,
+      name: editValues.name,
+      price: editValues.price,
+      category: editValues.category,
+    }).then(() => {
+      props.setListGames(
+        props.listGames.map((value) => {
+          return value.id === editValues.id
+            ? {
+                id: editValues.id,
+                name: editValues.name,
+                price: editValues.price,
+                category: editValues.category,
+              }
+            : value;
+        })
+      );
+    });
+    handleClose();
+  };
+
+  const handleDelete = () => {
+    Axios.delete(`http://localhost:3001/delete/${editValues.id}`).then(() => {
+      props.setListGames(
+        props.listGames.filter((value) => {
+          return value.id !== editValues.id;
+        })
+      );
+    });
+    handleClose();
+    window.location.reload();
   };
 
   return (
