@@ -7,8 +7,6 @@ function App() {
   const [values, setValues] = useState();
   const [listGames, setListGames] = useState();
 
-  console.log(listGames);
-
   const handleChangeValues = (e) => {
     setValues((prevValue) => ({
       ...prevValue,
@@ -16,13 +14,20 @@ function App() {
     }));
   };
 
-  const handleClickButton = (e) => {
+  const handleRegisterButton = () => {
     Axios.post("http://localhost:3001/register", {
       name: values.name,
       price: values.price,
       category: values.category,
     }).then((response) => {
-      console.log(response);
+      setListGames([
+        ...listGames,
+        {
+          name: values.name,
+          price: values.price,
+          category: values.category,
+        },
+      ]);
     });
   };
 
@@ -35,7 +40,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="register-container">
-        <h1 className="register-title">Game Data</h1>
+        <h1 className="register-title">GAME DATA</h1>
         <input
           className="register--input"
           type="text"
@@ -59,23 +64,24 @@ function App() {
         />
         <button
           className="register--button"
-          onClick={() => handleClickButton()}
+          onClick={() => handleRegisterButton()}
         >
           Cadastrar
         </button>
       </div>
+      {console.log(listGames)}
       {typeof listGames !== "undefined" &&
         listGames.map((value) => {
           return (
             <Card
               key={value.id}
-              listCard={listGames}
-              setListCard={setListGames}
-              id={value.id}
+              listGames={listGames}
+              setListGames={setListGames}
+              id={value.idgames}
               name={value.name}
               price={value.price}
               category={value.category}
-            ></Card>
+            />
           );
         })}
     </div>

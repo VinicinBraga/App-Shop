@@ -17,9 +17,11 @@ app.post("/register", (req, res) => {
   const { name } = req.body;
   const { price } = req.body;
   const { category } = req.body;
-  let SQL = "INSERT INTO games (name, price, category) VALUES (?, ? ,?)";
+  let SQL = "INSERT INTO games ( name, price, category ) VALUES ( ?, ? ,? )";
+
   db.query(SQL, [name, price, category], (err, result) => {
-    console.log(err);
+    if (err) console.log(err);
+    else res.send(result);
   });
 });
 
@@ -31,4 +33,25 @@ app.get("/getCards", (req, res) => {
   });
 });
 
+app.put("/edit", (req, res) => {
+  const { id } = req.body;
+  const { name } = req.body;
+  const { price } = req.body;
+  const { category } = req.body;
+  let SQL =
+    "UPDATE games SET name = ?, price = ?, category = ? WHERE idgames = ?";
+  db.query(SQL, [name, price, category, id], (err, result) => {
+    if (err) console.log(err);
+    else res.send(result);
+  });
+});
+
+app.delete("/delete/:id", (req, res) => {
+  const { id } = req.params;
+  let SQL = "DELETE from games WHERE idgames = ?";
+  db.query(SQL, [id], (err, result) => {
+    if (err) console.log(err);
+    else res.send(result);
+  });
+});
 app.listen(port, () => console.log(`Example app listening on port port!`));
